@@ -6,12 +6,13 @@ function Main(props) {
   const {
     todos,
     onDeleted,
-    onDone
+    onDone,
+    onEdit
   } = props;
   return (
     <main className="container">
       <Filter />
-      <TaskList todo={todos} onDeleted={onDeleted} onDone={onDone} />
+      <TaskList todo={todos} onDeleted={onDeleted} onDone={onDone} onEdit={onEdit} />
     </main>
   );
 }

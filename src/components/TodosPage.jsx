@@ -19,6 +19,7 @@ class TodosPage extends React.Component {
     this.onDeleted = this.onDeleted.bind(this);
     this.onDone = this.onDone.bind(this);
     this.onSave = this.onSave.bind(this);
+    this.onEdit = this.onEdit.bind(this);
   }
 
   componentDidMount() {
@@ -85,6 +86,27 @@ class TodosPage extends React.Component {
     }
   }
 
+  onEdit(e) {
+    const { items } = this.state;
+    const elem = e.target;
+    const editTaskParent = elem.parentElement
+      .parentElement
+      .parentElement
+      .parentElement;
+    const id = editTaskParent.getAttribute('data');
+    const tempItem = items.find((item) => item.id === id);
+    const inputTitle = document.querySelector('.create-task-form input[name="title"]');
+    const inputDesc = document.querySelector('.create-task-form textarea[name="description"]');
+    const inputPrior = document.querySelector('.create-task-form select[name="priority"]');
+    const createTask = document.querySelector('.create-task-form');
+    const isdone = editTaskParent.classList.contains('task-done');
+    createTask.setAttribute('task-id', id);
+    createTask.setAttribute('task-done', isdone);
+    inputTitle.value = tempItem.title;
+    inputDesc.value = tempItem.description;
+    inputPrior.value = tempItem.priority;
+  }
+
   render() {
     const todoData = this.state;
     return (
@@ -94,6 +116,7 @@ class TodosPage extends React.Component {
           todos={todoData}
           onDeleted={(id) => this.onDeleted(id)}
           onDone={(id) => this.onDone(id)}
+          onEdit={(e) => this.onEdit(e)}
         />
         <Footer />
         <CreateTask onSave={() => this.onSave()} />
