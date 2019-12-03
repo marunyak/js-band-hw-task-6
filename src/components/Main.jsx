@@ -4,12 +4,13 @@ import TaskList from './TaskList';
 
 function Main(props) {
   const {
-    todos
+    todos,
+    onDeleted
   } = props;
   return (
     <main className="container">
       <Filter />
-      <TaskList todo={todos} />
+      <TaskList todo={todos} onDeleted={onDeleted} />
     </main>
   );
 }

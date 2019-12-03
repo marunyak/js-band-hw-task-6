@@ -15,6 +15,7 @@ class TodosPage extends React.Component {
         priority: 'all'
       }
     };
+    this.onDeleted = this.onDeleted.bind(this);
   }
 
   componentDidMount() {
@@ -25,6 +26,12 @@ class TodosPage extends React.Component {
 
   }
 
+  onDeleted(id) {
+    const { items } = this.state;
+    const list = items.filter((item) => item.id !== id);
+    this.setState({ items: list });
+  }
+
   render() {
     const todoData = this.state;
     return (
@@ -32,7 +39,7 @@ class TodosPage extends React.Component {
         <Header />
         <Main
           todos={todoData}
-
+          onDeleted={(id) => this.onDeleted(id)}
         />
         <Footer />
         <CreateTask />
