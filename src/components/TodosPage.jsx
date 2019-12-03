@@ -20,6 +20,7 @@ class TodosPage extends React.Component {
     this.onDone = this.onDone.bind(this);
     this.onSave = this.onSave.bind(this);
     this.onEdit = this.onEdit.bind(this);
+    this.onFilter = this.onFilter.bind(this);
   }
 
   componentDidMount() {
@@ -107,6 +108,13 @@ class TodosPage extends React.Component {
     inputPrior.value = tempItem.priority;
   }
 
+  onFilter(e) {
+    const { value, name } = e.target;
+    const { filter } = this.state;
+    filter[name] = value;
+    this.setState({ filter });
+  }
+
   render() {
     const todoData = this.state;
     return (
@@ -117,6 +125,7 @@ class TodosPage extends React.Component {
           onDeleted={(id) => this.onDeleted(id)}
           onDone={(id) => this.onDone(id)}
           onEdit={(e) => this.onEdit(e)}
+          onFilter={(e) => this.onFilter(e)}
         />
         <Footer />
         <CreateTask onSave={() => this.onSave()} />
