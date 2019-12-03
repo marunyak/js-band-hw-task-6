@@ -16,6 +16,7 @@ class TodosPage extends React.Component {
       }
     };
     this.onDeleted = this.onDeleted.bind(this);
+    this.onDone = this.onDone.bind(this);
   }
 
   componentDidMount() {
@@ -32,6 +33,17 @@ class TodosPage extends React.Component {
     this.setState({ items: list });
   }
 
+  onDone(id) {
+    const { items } = this.state;
+    const list = items.filter((item) => {
+      if (item.id === id) {
+        item.done = !item.done;
+      }
+      return item;
+    });
+    this.setState({ items: list });
+  }
+
   render() {
     const todoData = this.state;
     return (
@@ -40,6 +52,7 @@ class TodosPage extends React.Component {
         <Main
           todos={todoData}
           onDeleted={(id) => this.onDeleted(id)}
+          onDone={(id) => this.onDone(id)}
         />
         <Footer />
         <CreateTask />

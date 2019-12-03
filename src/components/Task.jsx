@@ -2,7 +2,7 @@ import React from 'react';
 
 function Task(props) {
   const {
-    item, onDeleted
+    item, onDeleted, onDone
   } = props;
   const colors = { low: 'bg-primary', normal: 'bg-warning', high: 'bg-danger' };
   let background = 'task col-sm-3 shadow rounded p-3 mr-3 mb-4 ';
@@ -24,7 +24,7 @@ function Task(props) {
               ...
           </button>
           <div className="dropdown-menu options-list">
-            <div className="dropdown-item done">done</div>
+            <div className="dropdown-item done" onClick={onDone}>done</div>
             <div
               className="dropdown-item edit"
 

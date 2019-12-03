@@ -3,7 +3,7 @@ import Task from './Task';
 
 function TaskList(props) {
   const {
-    todo, onDeleted
+    todo, onDeleted, onDone
   } = props;
   const { items, filter } = todo;
   const high = [];
@@ -32,6 +32,7 @@ function TaskList(props) {
       key={item.id}
       item={item}
       onDeleted={() => onDeleted(item.id)}
+      onDone={() => onDone(item.id)}
     />
   ));
 
