@@ -2,7 +2,7 @@ import React from 'react';
 
 function Task(props) {
   const {
-    item, onDeleted, onDone
+    item, onDeleted, onDone, onEdit
   } = props;
   const colors = { low: 'bg-primary', normal: 'bg-warning', high: 'bg-danger' };
   let background = 'task col-sm-3 shadow rounded p-3 mr-3 mb-4 ';
@@ -27,7 +27,7 @@ function Task(props) {
             <div className="dropdown-item done" onClick={onDone}>done</div>
             <div
               className="dropdown-item edit"
-
+              onClick={onEdit}
               data-toggle="modal"
               data-target="#exampleModalCenter"
             >
