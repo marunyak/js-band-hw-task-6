@@ -9,6 +9,7 @@ class TodosPage extends React.Component {
     super(props);
     this.state = {
       items: [],
+      // eslint-disable-next-line react/no-unused-state
       filter: {
         search: '',
         open: 'all',
@@ -17,6 +18,7 @@ class TodosPage extends React.Component {
     };
     this.onDeleted = this.onDeleted.bind(this);
     this.onDone = this.onDone.bind(this);
+    this.onSave = this.onSave.bind(this);
   }
 
   componentDidMount() {
@@ -44,6 +46,45 @@ class TodosPage extends React.Component {
     this.setState({ items: list });
   }
 
+  onSave() {
+    const inputTitle = document.querySelector('.create-task-form input[name="title"]');
+    const inputDesc = document.querySelector('.create-task-form textarea[name="description"]');
+    const inputPrior = document.querySelector('.create-task-form select[name="priority"]');
+    const createTask = document.querySelector('.create-task-form');
+    const titleTask = inputTitle.value;
+    const descriptionTask = inputDesc.value;
+    const priorityTask = inputPrior.value;
+    inputTitle.value = null;
+    inputDesc.value = null;
+    inputPrior.value = 'high';
+
+    if (createTask.getAttribute('task-id') && createTask.getAttribute('task-done')) {
+      const isdone = createTask.getAttribute('task-done') !== 'false';
+      const id = createTask.getAttribute('task-id');
+      const { items } = this.state;
+      const list = items.map((item) => {
+        if (item.id === id) {
+          item = {
+            id, title: titleTask, description: descriptionTask, priority: priorityTask, done: isdone
+          };
+        }
+        return item;
+      });
+      this.setState({ items: list });
+      createTask.removeAttribute('task-id');
+      createTask.removeAttribute('task-done');
+    } else {
+      const element = {
+        id: Date.now().toString(),
+        title: titleTask,
+        description: descriptionTask,
+        priority: priorityTask,
+        done: false
+      };
+      this.setState((state) => state.items.push(element));
+    }
+  }
+
   render() {
     const todoData = this.state;
     return (
@@ -55,7 +96,7 @@ class TodosPage extends React.Component {
           onDone={(id) => this.onDone(id)}
         />
         <Footer />
-        <CreateTask />
+        <CreateTask onSave={() => this.onSave()} />
       </div>
     );
   }
