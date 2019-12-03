@@ -1,6 +1,7 @@
 import React from 'react';
 
-function CreateTask() {
+function CreateTask(props) {
+  const { onSave } = props;
   return (
     <div className="modal fade" id="exampleModalCenter" tabIndex="-1">
       <div className="modal-dialog modal-dialog-centered" role="document">
@@ -54,6 +55,7 @@ Priority:
             <button
               type="button"
               className="btn btn-success"
+              onClick={onSave}
               data-dismiss="modal"
             >
 Save changes
