@@ -1,0 +1,21 @@
+
+{
+    "parser": "babel-eslint",
+    "extends": "airbnb",
+    "env": {
+        "browser": true,
+        "node": true,
+        "jest": true
+    },
+    "rules": {
+      "arrow-parens": "off",
+      "comma-dangle": "off",
+      "function-paren-newline": "off",
+      "max-len": [1, 120],
+      "no-param-reassign": "off",
+      "react/require-default-props": "off",
+      "react/prop-types": "off",
+      "jsx-a11y/click-events-have-key-events": "off",
+      "jsx-a11y/no-static-element-interactions": "off"
+    }
+  }
