@@ -2,7 +2,7 @@ import React from 'react';
 
 function Task(props) {
   const {
-    item
+    item, onDeleted
   } = props;
   const colors = { low: 'bg-primary', normal: 'bg-warning', high: 'bg-danger' };
   let background = 'task col-sm-3 shadow rounded p-3 mr-3 mb-4 ';
@@ -34,7 +34,7 @@ function Task(props) {
 edit
 
             </div>
-            <div className="dropdown-item delete">delete</div>
+            <div className="dropdown-item delete" onClick={onDeleted}>delete</div>
           </div>
         </div>
       </div>
