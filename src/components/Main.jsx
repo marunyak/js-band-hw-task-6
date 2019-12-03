@@ -7,11 +7,12 @@ function Main(props) {
     todos,
     onDeleted,
     onDone,
-    onEdit
+    onEdit,
+    onFilter
   } = props;
   return (
     <main className="container">
-      <Filter />
+      <Filter onFilter={onFilter} />
       <TaskList todo={todos} onDeleted={onDeleted} onDone={onDone} onEdit={onEdit} />
     </main>
   );

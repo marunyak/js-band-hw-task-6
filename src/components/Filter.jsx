@@ -1,20 +1,21 @@
 import React from 'react';
 
-function Filter() {
+function Filter(props) {
+  const { onFilter } = props;
   return (
     <nav className="filter row mt-4">
       <div className="col">
-        <input type="text" name="search" className="form-control" placeholder="Search by title" />
+        <input type="text" onChange={onFilter} name="search" className="form-control" placeholder="Search by title" />
       </div>
       <div className="col">
-        <select name="open" className="form-control">
+        <select name="open" className="form-control" onChange={onFilter}>
           <option value="all">all</option>
           <option value="open">open</option>
           <option value="done">done</option>
         </select>
       </div>
       <div className="col">
-        <select name="priority" className="form-control">
+        <select name="priority" className="form-control" onChange={onFilter}>
           <option value="all">all</option>
           <option value="high">high</option>
           <option value="normal">normal</option>
