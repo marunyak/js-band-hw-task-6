@@ -53,7 +53,7 @@ $ git clone https://github.com/marunyak/js-band-hw-task-6.git
 ```
 2. Use [npm](https://npmjs.org/) to install node_modules
 ```sh
-$ npm init
+$ npm install
 ```
 3. Run project:
 ```sh
